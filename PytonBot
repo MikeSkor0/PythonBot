@@ -1,0 +1,31 @@
+main.py
+from telebot import TeleBot
+
+
+# Замени эту строку своим токеном
+TOKEN = '6416240416:AAGIpphwzOC1exSon3B42Y6k5OMjB6sCSFs'
+
+
+# Создаём бота
+bot = TeleBot(TOKEN)
+
+
+# Эта функция будет вызвана если написать боту
+# /visokosnii 2020
+@bot.message_handler(command='visokosnii')
+def command_visokosnii(message):
+    # Здесь мы достаём из текста сообшения год
+    year = message.text.split()[-1]
+    year = int(year)
+
+    # Здесь выполняем вычисления
+    # ...
+
+    # Здесь мы пишем ответ в тот же чат
+    chat_id = message.chat.id
+    bot.send_message(chat_id, 'Da on visokosnii')
+
+
+# Этой строкой мы запускаем бота
+bot.polling()
+
